@@ -10,8 +10,9 @@ Released to the public domain I guess?
 
 Authors:
 Jennifer Rodriguez-Mueller
-??
+Steve Rayhawk
 """
+import math
 
 def main():
     """Handle job of "being a script" from command line."""
@@ -37,8 +38,8 @@ def scoreParanoidDebatingGameFile(inFileObj):
                 nums.append(float(oneRound[i]))
             people = oneRound[4].split("|")
             speaker = people[0]
-            advisors = people[1].split(",")
-            tricksys = people[2].split(",")
+            advisors = filter(len,people[1].split(","))
+            tricksys = filter(len,people[2].split(","))
         except:
             Exception("Bad format!")
         for person in advisors+tricksys+[speaker]:
@@ -49,19 +50,32 @@ def scoreParanoidDebatingGameFile(inFileObj):
         confidence = nums[0]
         if nums[1] > nums[2]:
             Exception("Probable confusion about bounds...")
-        correct = True
-        if nums[3] < nums[1] or nums[2] < nums[3]:
-            correct = False
+        logarithmic = True
+        if (logarithmic):
+            low = math.log(nums[1])
+            high = math.log(nums[2])
+            actual = math.log(nums[3])
+        else:
+            low = nums[1]
+            high = nums[2]
+            actual = nums[3]
+        center = (low+high)/2.0
+        
+        ## <Thank you Steve>
+        #
+        # Compute Cauchy inverse cdf of
+        #    q = 1/2 + confidence/2
+        # (high quantile of centered confidence interval)
+        #    as tan((q-1/2)*pi)
+        scale = math.tan(confidence/2.0*math.pi)*(high-low)/2.0
+        # Compute Cauchy pdf as 1/(1+x**2)/pi
+        density = 1.0/(1+((actual-center)/scale)**2)/math.pi/scale
         # Calculate scores round by round...
-        if correct:
-            speakerScore = confidence * 2.0
-            advisorScore = confidence
-            tricksyScore = 0
-        if not correct:
-            speakerScore = confidence * -1.0
-            advisorScore = 0
-            tricksyScore = confidence * 2.0
-
+        speakerScore = math.log(density) * 2.0
+        advisorScore = math.log(density)
+        tricksyScore = math.log(density) * -1.0
+        ## </You're welcome Jennifer>
+        
         # Update scores as you go...
         scores[speaker.lower()] += speakerScore
         for person in advisors:
@@ -75,6 +89,6 @@ if __name__ == '__main__':
     try:
         main()
     except:
-        print "USAGE: cat paranoidDebateGameFile |"sys.argv[0],"\n"
+        print "USAGE: cat paranoidDebateGameFile | ",sys.argv[0],"\n"
         print "Problem with scoring script or game file... look for help."
         print "http://wiki.lesswrong.com/wiki/Paranoid_debating"
