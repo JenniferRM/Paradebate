@@ -17,9 +17,34 @@ import math
 def main():
     """Handle job of "being a script" from command line."""
     import sys
-    scores = scoreParanoidDebatingGameFile(sys.stdin)
+    if len(sys.argv) != 2:
+        print "USAGE: scorePDGF.py FILE\n"
+        print "Exactly one arg required... but not provided."
+        sys.exit(-1)
+    if sys.argv[1] in ["--help","-h","/?"]:
+        print "USAGE: scorePDGF.py FILE\n"
+        print 'A "pdgf" file is file recording a game of Paranoind Debating'
+        print "in the relevant Game Format.  By convention the file matches"
+        print "*.pdgf.txt and examples should be script.\n"
+        print "For background on the game itself, see:"
+        print "http://wiki.lesswrong.com/wiki/Paranoid_debating"
+    try:
+        f = open(sys.argv[1])
+    except:
+        print "USAGE: scorePDGF.py FILE\n"
+        print "Specified FILE couldn't be opened."
+        sys.exit(-1)
+    try:
+        scores = scoreParanoidDebatingGameFile(f)
+    except:
+        print "Game format violated.  Double check references"
+        print "http://wiki.lesswrong.com/wiki/Paranoid_debating"
+        sys.exit(-1)
+
+    #Minimal output:
     for person in scores:
         print "The score of",person,"was",round(scores[person],3)
+
 
 def scoreParanoidDebatingGameFile(inFileObj):
     """Score a game of paranoid debating in PDGF.  Callable from IDLE :)"""
@@ -62,7 +87,6 @@ def scoreParanoidDebatingGameFile(inFileObj):
         center = (low+high)/2.0
         
         ## <Thank you Steve>
-        #
         # Compute Cauchy inverse cdf of
         #    q = 1/2 + confidence/2
         # (high quantile of centered confidence interval)
@@ -85,10 +109,4 @@ def scoreParanoidDebatingGameFile(inFileObj):
     return scores
 
 if __name__ == '__main__':
-    import sys
-    try:
-        main()
-    except:
-        print "USAGE: cat paranoidDebateGameFile | ",sys.argv[0],"\n"
-        print "Problem with scoring script or game file... look for help."
-        print "http://wiki.lesswrong.com/wiki/Paranoid_debating"
+    main()

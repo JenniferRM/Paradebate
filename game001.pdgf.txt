@@ -1,0 +1,54 @@
+# Game played at Southern California Less Wrong Meetup on Feb 27, 2011 
+#
+# Questions came from Wits & Wagers cards
+#
+# Scoring was fuzzy based on code that (hopefully):
+#   Rewarded narrow error bars around high confidence accuracy
+#   Made penalties for errors lower when low confidence was expressed
+#   Generally encouraged well calibrated contributions
+#
+# Its still not clear what the best way to mesh human game experiences
+# with a scoring algorithm.
+#
+# The probabilities expressed in the first column are confidence.
+# (IE the subjective probability of being *right* is expressed.)
+# 
+
+# ROUND 1: How many inches tall is Tom Cruise?
+0.625	62	67	67	Btn|Lin|Jen,Jon,Mkm,Rhl,Pal,Jim,Jhn
+
+# ROUND 2: When was the rock and roll hall of fame opened? (years after 1900)
+0.70	66	75	95	Jon|Rhl,Pal,Jhn|Btn,Mkm,Lin,Jen,Jim
+
+# ROUND 3: New SUV's purchased in 2004 (in thousands)
+0.70	1000	15000	4600	Jen|Btn,Mkm,Rhl,Pal,Jim,Jhn|Lin,Jon
+
+# NOTE: Lin had to leave at this point.
+
+# ROUND 4: Largest pearl in pounds every found (in pounds)
+0.70	1	20	14.06	Jim|Pal,Rhl,Mkm,Jhn,Jim|Jon,Btn,Jen
+
+# ROUND 5: How many people lived in California in 1900 (in thousands)
+0.80	500	5000	1485	Jhn|Rhl,Jen,Mkm,Jon|Jim,Pal,Btn
+
+# ROUND 6: What is the most number of times a song has been downloaded (in thousands)
+0.60	5000	30000	295	Pal|Jen,Mkm|Jhn,Rhl,Jim,Btn,Jon
+
+# NOTE: Mkm took a break from playing in round 7.
+
+# ROUND 7: How many items were put on EBay in 2007? (in thousands)
+.80	50	2000	6500	Rhl|Jhn,Btn,Jon|Jen,Pal,Jim
+
+# ROUND 8: How many times did the Beatles sing "Yeah" in the song "She Loves Me"?
+.75	18	66	29	Mkm|,Jhn,Pal,Jim,Btn|Jen,Rhl,Btn,Jon
+
+# NOTE: Everyone still playing had been the speaker once, but we wanted to play 
+# a little more so being Speaker was determined by high card draw.  Mkm won :-)
+
+# ROUND 9: What year was the first polio vaccine developed? (year after 1900)
+.80	30	70	52	Mkm|Jhn,Pal,Rhl,Jim|Jen,Btn,Jon
+
+
+
+
+
