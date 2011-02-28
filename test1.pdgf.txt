@@ -1,0 +1,32 @@
+# Comments ignored
+
+# whitespace too :-)
+
+
+# A bog standard round with one speaker, three advisors, and one trickster
+# The number is right but the confidence is low so its not worth a lot
+
+.90	30	60	55.6	Alice|Bob,Carol,Donald|Elizabeth
+
+
+
+# The numbers should be convertable to floats by pythons float()
+# Also, the only requirement is that there be one speaker
+# In this round, Bob had *only* tricksters talking to him...
+# All tricksters profit when he's three orders of mag over his high end.
+
+.50	1	1e10	2.3e13	Bob||Donald,Alice,Carol,Elizabeth
+
+
+
+# Players can leave and join over the course of the game
+# Player names are matched without case sensitivity
+# Here, Elizabeth gets it right with Carol and Bob's help.
+
+.10	3	3.5	2.9	ELIZABETH|carol,bob|Donald,Frank
+
+
+
+
+
+
