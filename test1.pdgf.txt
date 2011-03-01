@@ -13,7 +13,7 @@
 # The numbers should be convertable to floats by pythons float()
 # Also, the only requirement is that there be one speaker
 # In this round, Bob had *only* tricksters talking to him...
-# All tricksters profit when he's three orders of mag over his high end.
+# When Bob is three orders of mag over his high end, all tricksters profit.
 
 .50	1	1e10	2.3e13	Bob||Donald,Alice,Carol,Elizabeth
 
